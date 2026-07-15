@@ -16,6 +16,7 @@
   let prevId: string | null = null
   let prevTheme: Theme | null = null
   let renderSeq = 0
+  let startupRenderPending = true
 
   function applyTransform() {
     stage.style.transform = `translate(${view.tx}px,${view.ty}px) scale(${view.scale})`
@@ -96,13 +97,15 @@
 
   async function doRender(code: string, theme: Theme) {
     const seq = ++renderSeq
+    const preserveStartupNotice = startupRenderPending
+    startupRenderPending = false
     const result = await renderDiagram(code, theme)
     if (seq !== renderSeq) return
     if ('error' in result) {
       app.error = result.error
       return
     }
-    app.error = null
+    if (!preserveStartupNotice) app.error = null
     stage.innerHTML = result.svg
     normalizeSvg()
     fit()

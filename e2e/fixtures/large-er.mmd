@@ -1,0 +1,109 @@
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER ||--o{ ADDRESS : registers
+    CUSTOMER ||--|| CART : owns
+    CUSTOMER ||--o{ REVIEW : writes
+    ORDER ||--|{ ORDER_LINE : contains
+    ORDER ||--|| PAYMENT : settled_by
+    ORDER ||--o| SHIPMENT : fulfilled_by
+    ORDER }o--|| ADDRESS : ships_to
+    PRODUCT ||--o{ ORDER_LINE : listed_in
+    PRODUCT ||--o{ CART_ITEM : added_as
+    PRODUCT }o--|| CATEGORY : grouped_under
+    PRODUCT ||--o{ REVIEW : receives
+    PRODUCT }o--o{ SUPPLIER : sourced_from
+    CART ||--o{ CART_ITEM : holds
+    SHIPMENT }o--|| WAREHOUSE : dispatched_from
+    SUPPLIER ||--o{ WAREHOUSE : stocks
+
+    CUSTOMER {
+        string customerId PK "unique customer identifier"
+        string email UK "login and contact email"
+        string firstName "given name of the customer"
+        string lastName "family name of the customer"
+        datetime createdAt "account creation timestamp"
+        boolean isActive "account enabled flag"
+    }
+    ADDRESS {
+        string addressId PK "unique address identifier"
+        string customerId FK "owning customer reference"
+        string street "street line including number"
+        string city "city or municipality name"
+        string postalCode "postal or zip code"
+        string country "two letter country code"
+    }
+    ORDER {
+        string orderId PK "unique order identifier"
+        string customerId FK "purchasing customer reference"
+        string addressId FK "destination shipping address"
+        datetime placedAt "moment the order was placed"
+        string status "current order lifecycle status"
+        decimal totalAmount "grand total including tax"
+    }
+    ORDER_LINE {
+        string orderLineId PK "unique order line identifier"
+        string orderId FK "parent order reference"
+        string productId FK "purchased product reference"
+        int quantity "number of units ordered"
+        decimal unitPrice "price per single unit"
+        decimal lineDiscount "discount applied to line"
+    }
+    PRODUCT {
+        string productId PK "unique product identifier"
+        string sku UK "stock keeping unit code"
+        string categoryId FK "owning category reference"
+        string name "human readable product name"
+        decimal price "current list price of item"
+        int stockLevel "units available in inventory"
+    }
+    CATEGORY {
+        string categoryId PK "unique category identifier"
+        string parentId FK "parent category for nesting"
+        string name "display name of the category"
+        string slug "url friendly category slug"
+    }
+    CART {
+        string cartId PK "unique cart identifier"
+        string customerId FK "owning customer reference"
+        datetime updatedAt "last cart mutation time"
+    }
+    CART_ITEM {
+        string cartItemId PK "unique cart item identifier"
+        string cartId FK "parent cart reference"
+        string productId FK "referenced product reference"
+        int quantity "chosen quantity of product"
+    }
+    PAYMENT {
+        string paymentId PK "unique payment identifier"
+        string orderId FK "settled order reference"
+        string method "card wallet or transfer"
+        decimal amount "captured payment amount"
+        string status "authorization capture status"
+    }
+    SHIPMENT {
+        string shipmentId PK "unique shipment identifier"
+        string orderId FK "shipped order reference"
+        string warehouseId FK "origin warehouse reference"
+        string carrier "delivery carrier company name"
+        string trackingCode "carrier tracking reference"
+        datetime shippedAt "dispatch timestamp of parcel"
+    }
+    WAREHOUSE {
+        string warehouseId PK "unique warehouse identifier"
+        string supplierId FK "operating supplier reference"
+        string name "warehouse facility label"
+        string region "geographic operating region"
+    }
+    SUPPLIER {
+        string supplierId PK "unique supplier identifier"
+        string name "registered supplier name"
+        string contactEmail "supplier contact email"
+        boolean preferred "preferred partner flag"
+    }
+    REVIEW {
+        string reviewId PK "unique review identifier"
+        string customerId FK "authoring customer reference"
+        string productId FK "reviewed product reference"
+        int rating "one to five star rating"
+        text body "written review content body"
+    }
