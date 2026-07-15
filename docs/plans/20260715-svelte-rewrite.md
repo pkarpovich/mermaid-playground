@@ -321,13 +321,13 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 **Files:**
 - Modify: `src/App.svelte`, `src/main.ts`, `src/app.css`
 
-- [ ] compose layout: sidebar + main column (topbar + workspace with Canvas overlay children EditorPanel), app-shell grid/flex with a 248px sidebar column and 53px topbar row (asserted by parity.spec.ts), `100dvh`
-- [ ] startup sequence in `main.ts`/App init: `loadState()`; if `location.hash` starts with `#code:` -> `decodeShare` -> `applyShared` or `Broken share link` error toast -> `history.replaceState` clean hash
-- [ ] persist `$effect` with the reads INSIDE the effect body: `const json = JSON.stringify({ charts: app.charts, activeId: app.activeId, theme: app.theme })` then `localStorage.setItem` - the deep read during stringify registers every nested dependency, so in-place code/name mutations retrigger it (an effect that only touches the references does not); `$effect`: `data-theme` on `<html>`; editor/sidebar toggles trigger delayed refit (Canvas listens via shared state)
-- [ ] remove scaffold leftovers (demo counter, svg assets)
-- [ ] bundle check with explicit pass condition: `pnpm build` output shows a separate mermaid async chunk AND the entry JS chunk is < 100 KB gzip as printed by vite build; both conditions met = pass
-- [ ] tests: startup import logic is unit-covered via `applyShared`/`decodeShare` tests (Tasks 4-5); full startup flow is asserted by `e2e/share.spec.ts` (Task 11)
-- [ ] Validation Commands green before next task
+- [x] compose layout: sidebar + main column (topbar + workspace with Canvas overlay children EditorPanel), app-shell grid/flex with a 248px sidebar column and 53px topbar row (asserted by parity.spec.ts), `100dvh`
+- [x] startup sequence in `main.ts`/App init: `loadState()`; if `location.hash` starts with `#code:` -> `decodeShare` -> `applyShared` or `Broken share link` error toast -> `history.replaceState` clean hash
+- [x] persist `$effect` with the reads INSIDE the effect body: `const json = JSON.stringify({ charts: app.charts, activeId: app.activeId, theme: app.theme })` then `localStorage.setItem` - the deep read during stringify registers every nested dependency, so in-place code/name mutations retrigger it (an effect that only touches the references does not); `$effect`: `data-theme` on `<html>`; editor/sidebar toggles trigger delayed refit (Canvas listens via shared state)
+- [x] remove scaffold leftovers (demo counter, svg assets)
+- [x] bundle check with explicit pass condition: `pnpm build` output shows a separate mermaid async chunk AND the entry JS chunk is < 100 KB gzip as printed by vite build; both conditions met = pass
+- [x] tests: startup import logic is unit-covered via `applyShared`/`decodeShare` tests (Tasks 4-5); full startup flow is asserted by `e2e/share.spec.ts` (Task 11)
+- [x] Validation Commands green before next task
 
 ### Task 11: Playwright e2e suite (smoke, share, parity)
 
