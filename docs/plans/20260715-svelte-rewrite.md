@@ -245,9 +245,9 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 **Files:**
 - Create: `src/lib/highlight.ts`, `src/lib/highlight.test.ts`
 
-- [ ] implement `highlight(code: string): string` per Technical Details, preserving the specified pass order (comment short-circuit; escape; keywords; arrows; brackets; nesting allowed)
-- [ ] tests: HTML escaping of `& < >` and `<script>` payloads (XSS guard); each token class produced; arrows matched in escaped form; keyword inside brackets yields nested spans (bracket span containing a tk-key span); `%%` comment line short-circuits; empty line -> space; multi-line join
-- [ ] Validation Commands green before next task
+- [x] implement `highlight(code: string): string` per Technical Details, preserving the specified pass order (comment short-circuit; escape; keywords; arrows; brackets; nesting allowed)
+- [x] tests: HTML escaping of `& < >` and `<script>` payloads (XSS guard); each token class produced; arrows matched in escaped form; keyword inside brackets yields nested spans (bracket span containing a tk-key span); `%%` comment line short-circuits; empty line -> space; multi-line join
+- [x] Validation Commands green before next task
 
 ### Task 4: share.ts
 
