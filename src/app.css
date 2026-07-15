@@ -1,3 +1,101 @@
-:root {
-  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+@layer reset, base, components;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+
+    --bg: light-dark(oklch(0.9734 0.0013 286.37), oklch(0.18 0.0102 285.33));
+    --panel: light-dark(oklch(1 0 0), oklch(0.2166 0.0136 285.21));
+    --panel-2: light-dark(oklch(0.9884 0.0013 286.38), oklch(0.1985 0.0119 285.26));
+    --text: light-dark(oklch(0.2238 0.0077 285.76), oklch(0.9382 0.0054 286.3));
+    --text-2: light-dark(oklch(0.4531 0.0161 285.74), oklch(0.7698 0.0141 286.06));
+    --muted: light-dark(oklch(0.6665 0.0146 286), oklch(0.5937 0.0181 285.84));
+    --border: light-dark(oklch(0.9439 0.004 286.32), oklch(0.2725 0.0166 285.25));
+    --border-strong: light-dark(oklch(0.9018 0.0054 286.29), oklch(0.3256 0.0194 285.28));
+    --hover: light-dark(oklch(0.9617 0.0027 286.35), oklch(0.2559 0.0168 285.15));
+    --accent: light-dark(oklch(0.55 0.16 274), oklch(0.72 0.15 274));
+    --accent-ink: light-dark(oklch(1 0 0), oklch(0.1667 0.0125 284.96));
+    --accent-soft: light-dark(oklch(0.955 0.02 274), oklch(0.3 0.06 274));
+    --danger: light-dark(oklch(0.55 0.18 25), oklch(0.68 0.17 25));
+    --ok: oklch(0.6 0.14 150);
+    --grid-dot: light-dark(oklch(0.2027 0.0395 282.3 / 0.055), oklch(1 0 0 / 0.05));
+    --selection: color-mix(in oklch, var(--accent) 22%, transparent);
+    --shadow:
+      0 2px 6px oklch(0.1822 0.0184 284.43 / 0.06),
+      0 12px 34px oklch(0.1822 0.0184 284.43 / 0.08);
+
+    --tok-key: light-dark(oklch(0.52 0.17 274), oklch(0.76 0.14 274));
+    --tok-arrow: light-dark(oklch(0.56 0.15 22), oklch(0.78 0.13 30));
+    --tok-str: light-dark(oklch(0.5 0.11 162), oklch(0.79 0.12 162));
+    --tok-comment: light-dark(oklch(0.7283 0.0143 286.04), oklch(0.4719 0.0192 285.64));
+
+    --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    --fs-caption: 0.6875rem;
+    --fs-status: 0.71875rem;
+    --fs-small: 0.75rem;
+    --fs-control: 0.78125rem;
+    --fs-code: 0.8125rem;
+    --fs-list: 0.84375rem;
+    --fs-body: 0.875rem;
+    --fs-heading: 0.9375rem;
+    --code-leading: calc(20 / 13);
+
+    --radius-xs: 6px;
+    --radius-sm: 7px;
+    --radius-md: 8px;
+    --radius-lg: 9px;
+
+    --sidebar-w: 248px;
+    --ease-panel: cubic-bezier(0.4, 0, 0.2, 1);
+    --dur-panel: 0.3s;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --shadow:
+      0 2px 8px oklch(0 0 0 / 0.4),
+      0 16px 40px oklch(0 0 0 / 0.5);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    transition-duration: 0.01ms;
+  }
 }

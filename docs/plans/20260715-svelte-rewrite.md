@@ -233,12 +233,12 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 - Modify: `src/app.css`
 - Create: `src/lib/tokens.test.ts`, `scripts/css-gate.sh`
 
-- [ ] port all `:root` tokens from `design-preview/styles.css` into `src/app.css` under `@layer base` per the Design tokens spec in Technical Details (light-dark() color pairs, px -> rem font scale, radii/durations unchanged, selection via `color-mix()`)
-- [ ] convert every color to oklch (culori as devDependency); fidelity is defined solely by `tokens.test.ts` - a passing test means the conversion is correct, no manual recomputation
-- [ ] add `@layer reset` (box-sizing, margins, `button/input/textarea` font inherit) and base body rules, scrollbar properties, `prefers-reduced-motion` block (unlayered, no `!important` - per Code-Quality Rules)
-- [ ] create `scripts/css-gate.sh` implementing the CSS gate exactly as defined in Code-Quality Rules (style-scope extraction + pattern greps, exit 0 = clean); run it - must exit 0
-- [ ] write `tokens.test.ts` implementing exactly the contract in Technical Details / Design tokens (one light-dark() parser for both files, exhaustive token list, differenceCiede2000 < 2 both themes, alpha equality for --grid-dot, FAIL on missing token)
-- [ ] Validation Commands green before next task
+- [x] port all `:root` tokens from `design-preview/styles.css` into `src/app.css` under `@layer base` per the Design tokens spec in Technical Details (light-dark() color pairs, px -> rem font scale, radii/durations unchanged, selection via `color-mix()`)
+- [x] convert every color to oklch (culori as devDependency); fidelity is defined solely by `tokens.test.ts` - a passing test means the conversion is correct, no manual recomputation
+- [x] add `@layer reset` (box-sizing, margins, `button/input/textarea` font inherit) and base body rules, scrollbar properties, `prefers-reduced-motion` block (unlayered, no `!important` - per Code-Quality Rules)
+- [x] create `scripts/css-gate.sh` implementing the CSS gate exactly as defined in Code-Quality Rules (style-scope extraction + pattern greps, exit 0 = clean); run it - must exit 0
+- [x] write `tokens.test.ts` implementing exactly the contract in Technical Details / Design tokens (one light-dark() parser for both files, exhaustive token list, differenceCiede2000 < 2 both themes, alpha equality for --grid-dot, FAIL on missing token)
+- [x] Validation Commands green before next task
 
 ### Task 3: highlight.ts
 
