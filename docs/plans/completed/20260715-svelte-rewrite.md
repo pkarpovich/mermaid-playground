@@ -366,9 +366,9 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 
 ### Task 14: Finalize docs
 
-- [ ] README consistency check, all three must hold: commands match package.json scripts verbatim; share-format note states `#code:` + deflate-raw + base64url exactly as `share.ts` implements; deploy section names `deploy:cf`. All three match = done
-- [ ] move this plan to `docs/plans/completed/`
-- [ ] do NOT run `gh repo create` and do NOT push - repo creation and pushing are user-driven; record readiness in the progress log and leave the handoff to Post-Completion
+- [x] README consistency check, all three must hold: commands match package.json scripts verbatim; share-format note states `#code:` + deflate-raw + base64url exactly as `share.ts` implements; deploy section names `deploy:cf`. All three match = done
+- [x] move this plan to `docs/plans/completed/`
+- [x] do NOT run `gh repo create` and do NOT push - repo creation and pushing are user-driven; record readiness in the progress log and leave the handoff to Post-Completion
 
 ## Post-Completion
 
