@@ -357,12 +357,12 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 
 ### Task 13: Verify acceptance criteria
 
-- [ ] feature checklist, each proven by the named test: (1) sidebar CRUD -> `smoke.spec.ts` add/rename/delete; (2) editor highlight/gutter/status -> `highlight.test.ts` + smoke typing scenario; (3) pan/zoom + zoombar -> `viewport.test.ts` + smoke zoom assertions; (4) error toast + last-good-SVG -> smoke invalid-code scenario; (5) theme -> smoke theme scenario; (6) `mpl-1a` persistence -> `state.svelte.test.ts` + smoke reload scenario; (7) share -> `share.test.ts` + `share.spec.ts`
-- [ ] non-goal greps, all must be empty: `grep -ri sveltekit package.json src`, `grep -rn "keydown" src/components/EditorPanel.svelte` (no Tab handler), `grep -rn "router\|route(" src` (no routing), `grep -rn "i18n" package.json src`
-- [ ] full suite green: `pnpm test`, `pnpm check`, `pnpm build`, `pnpm e2e`
-- [ ] bundle condition from Task 10 re-verified on the final build (separate mermaid chunk, entry < 100 KB gzip)
-- [ ] CSS gate: run `scripts/css-gate.sh`; exits 0
-- [ ] localStorage compatibility: seed `mpl-1a` with a value in the preview's format (charts + activeId + theme), load the app, charts appear unchanged (covered as a `share.spec.ts`/smoke setup step with a pre-seeded context)
+- [x] feature checklist, each proven by the named test: (1) sidebar CRUD -> `smoke.spec.ts` add/rename/delete; (2) editor highlight/gutter/status -> `highlight.test.ts` + smoke typing scenario; (3) pan/zoom + zoombar -> `viewport.test.ts` + smoke zoom assertions; (4) error toast + last-good-SVG -> smoke invalid-code scenario; (5) theme -> smoke theme scenario; (6) `mpl-1a` persistence -> `state.svelte.test.ts` + smoke reload scenario; (7) share -> `share.test.ts` + `share.spec.ts`
+- [x] non-goal greps, all must be empty: `grep -ri sveltekit package.json src`, `grep -rn "keydown" src/components/EditorPanel.svelte` (no Tab handler), `grep -rn "router\|route(" src` (no routing), `grep -rn "i18n" package.json src`
+- [x] full suite green: `pnpm test`, `pnpm check`, `pnpm build`, `pnpm e2e`
+- [x] bundle condition from Task 10 re-verified on the final build (separate mermaid chunk, entry < 100 KB gzip)
+- [x] CSS gate: run `scripts/css-gate.sh`; exits 0
+- [x] localStorage compatibility: seed `mpl-1a` with a value in the preview's format (charts + activeId + theme), load the app, charts appear unchanged (covered as a `share.spec.ts`/smoke setup step with a pre-seeded context)
 
 ### Task 14: Finalize docs
 

@@ -3,6 +3,15 @@ import { expect, test } from '@playwright/test'
 const INVALID_CODE = 'this is definitely not a valid mermaid diagram {{{'
 const VALID_CODE = 'flowchart LR\n    A[One] --> B[Two]\n    B --> C([Done])'
 
+const PREVIEW_STATE = {
+  charts: [
+    { id: 'aaaa1111', name: 'Preview chart one', code: 'flowchart TD\n    A[One] --> B[Two]', updated: 1700000000000 },
+    { id: 'bbbb2222', name: 'Preview chart two', code: 'flowchart LR\n    X[Start] --> Y([End])', updated: 1700000001000 },
+  ],
+  activeId: 'bbbb2222',
+  theme: 'dark',
+}
+
 async function waitForDiagram(page: import('@playwright/test').Page) {
   await expect(page.locator('.stage svg')).toBeVisible()
 }
@@ -73,6 +82,20 @@ test('theme toggle sets data-theme and reload preserves charts and theme', async
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
   await expect(page.locator('.chart-row')).toHaveCount(2)
   await expect(page.locator('.name-input')).toHaveValue('Persisted chart')
+})
+
+test('pre-seeded mpl-1a in the preview format loads unchanged', async ({ page }) => {
+  await page.addInitScript((seed) => {
+    localStorage.setItem('mpl-1a', seed)
+  }, JSON.stringify(PREVIEW_STATE))
+
+  await page.goto('/')
+  await waitForDiagram(page)
+
+  await expect(page.locator('.chart-row')).toHaveCount(2)
+  await expect(page.locator('.chart-name')).toHaveText(['Preview chart one', 'Preview chart two'])
+  await expect(page.locator('.name-input')).toHaveValue('Preview chart two')
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 })
 
 test('zoombar in, out, reset, and fit behave as specified', async ({ page }) => {

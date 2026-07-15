@@ -17,6 +17,7 @@
   let prevTheme: Theme | null = null
   let renderSeq = 0
   let startupRenderPending = true
+  let toggleRefitReady = false
 
   function applyTransform() {
     stage.style.transform = `translate(${view.tx}px,${view.ty}px) scale(${view.scale})`
@@ -139,6 +140,10 @@
   $effect(() => {
     app.editorOpen
     app.sidebarOpen
+    if (!toggleRefitReady) {
+      toggleRefitReady = true
+      return
+    }
     const timer = setTimeout(fit, 320)
     return () => clearTimeout(timer)
   })
