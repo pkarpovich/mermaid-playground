@@ -285,12 +285,12 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 **Files:**
 - Create: `src/lib/viewport.ts`, `src/lib/viewport.test.ts`, `src/components/Canvas.svelte`
 
-- [ ] implement pure `viewport.ts`: `fitView`, `zoomAt`, `resetView`, clamp - exact formulas from Technical Details
-- [ ] implement `Canvas.svelte`: dot-grid viewer, stage (`bind:this`), non-reactive view object with direct transform writes, wheel/pointer handlers (pointer capture, grabbing cursor), zoombar (minus / percent-reset / plus / divider / Fit), error toast bottom-left, reactive `scalePct` label
-- [ ] render `$effect`: watches active chart id+code+theme, 320ms debounce on code changes only, cleanup clears timer; error path keeps previous SVG and sets `app.error`; success injects SVG, normalizes size from viewBox, fits
-- [ ] window resize -> refit listener with `$effect` cleanup
-- [ ] tests: viewport.ts full coverage (fit centering + 0.88 factor + clamping at both ends, zoomAt invariant "point under cursor stays", reset centering); interactive canvas behavior is asserted by `e2e/smoke.spec.ts` (Task 11)
-- [ ] Validation Commands green before next task
+- [x] implement pure `viewport.ts`: `fitView`, `zoomAt`, `resetView`, clamp - exact formulas from Technical Details
+- [x] implement `Canvas.svelte`: dot-grid viewer, stage (`bind:this`), non-reactive view object with direct transform writes, wheel/pointer handlers (pointer capture, grabbing cursor), zoombar (minus / percent-reset / plus / divider / Fit), error toast bottom-left, reactive `scalePct` label
+- [x] render `$effect`: watches active chart id+code+theme, 320ms debounce on code changes only, cleanup clears timer; error path keeps previous SVG and sets `app.error`; success injects SVG, normalizes size from viewBox, fits
+- [x] window resize -> refit listener with `$effect` cleanup
+- [x] tests: viewport.ts full coverage (fit centering + 0.88 factor + clamping at both ends, zoomAt invariant "point under cursor stays", reset centering); interactive canvas behavior is asserted by `e2e/smoke.spec.ts` (Task 11)
+- [x] Validation Commands green before next task
 
 ### Task 8: EditorPanel.svelte
 
