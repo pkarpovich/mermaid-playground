@@ -349,11 +349,11 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 - Create: `wrangler.jsonc`, `README.md`
 - Modify: `package.json`, `.gitignore`
 
-- [ ] `wrangler.jsonc`: name `mermaid-playground`, `compatibility_date: "2026-07-15"`, `assets.directory: ./dist` (config-only Worker, no script); reviewers must not flag the date's recency - config acceptance is the dry-run check below
-- [ ] add wrangler as devDependency + `deploy:cf` script (`pnpm build` then `wrangler deploy`); the name avoids pnpm's built-in `deploy` command which shadows package scripts; pass condition: package.json has a script literally named `deploy:cf` and NO script named `deploy`; never invoke `deploy:cf` during implementation or review (it needs CF credentials) - deploy correctness is covered by the dry-run check below; use `deploy:cf` consistently everywhere including README
-- [ ] config acceptance (in-repo, no external docs): `wrangler dev` serves the built app locally (index.html returns 200 and the app title renders) AND `wrangler deploy --dry-run` exits 0; both green = config verified
-- [ ] README.md: what it is; dev/test/build/e2e commands matching package.json scripts verbatim (including `pnpm exec playwright install chromium` one-time step); share-format note (`#code:` prefix, deflate-raw + base64url); deploy section: `pnpm deploy:cf` local deploy, plus the autodeploy steps copied exactly from Post-Completion in this plan (CF dashboard OAuth connect, build command `pnpm build`, deploy command `npx wrangler deploy`) - do not research CF docs
-- [ ] Validation Commands green before next task
+- [x] `wrangler.jsonc`: name `mermaid-playground`, `compatibility_date: "2026-07-15"`, `assets.directory: ./dist` (config-only Worker, no script); reviewers must not flag the date's recency - config acceptance is the dry-run check below
+- [x] add wrangler as devDependency + `deploy:cf` script (`pnpm build` then `wrangler deploy`); the name avoids pnpm's built-in `deploy` command which shadows package scripts; pass condition: package.json has a script literally named `deploy:cf` and NO script named `deploy`; never invoke `deploy:cf` during implementation or review (it needs CF credentials) - deploy correctness is covered by the dry-run check below; use `deploy:cf` consistently everywhere including README
+- [x] config acceptance (in-repo, no external docs): `wrangler dev` serves the built app locally (index.html returns 200 and the app title renders) AND `wrangler deploy --dry-run` exits 0; both green = config verified
+- [x] README.md: what it is; dev/test/build/e2e commands matching package.json scripts verbatim (including `pnpm exec playwright install chromium` one-time step); share-format note (`#code:` prefix, deflate-raw + base64url); deploy section: `pnpm deploy:cf` local deploy, plus the autodeploy steps copied exactly from Post-Completion in this plan (CF dashboard OAuth connect, build command `pnpm build`, deploy command `npx wrangler deploy`) - do not research CF docs
+- [x] Validation Commands green before next task
 
 ### Task 13: Verify acceptance criteria
 
