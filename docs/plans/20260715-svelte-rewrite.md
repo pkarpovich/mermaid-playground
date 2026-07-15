@@ -297,12 +297,12 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 **Files:**
 - Create: `src/components/EditorPanel.svelte`
 
-- [ ] layout consists of: header (EDITOR label + close button), gutter + highlight `<pre>{@html}` + transparent textarea (spellcheck/autocap off, wrap off), status bar (dot + text)
-- [ ] textarea wiring per Technical Details / Editor mechanics: `value={activeChart().code}` + `oninput` -> `updateActiveCode` (no bind:value)
-- [ ] gutter line numbers as `$derived` from code; `onscroll` sync textarea -> pre + gutter; identical font metrics via shared tokens
-- [ ] slide animation: `translate` + opacity via `data-open`, duration/easing tokens, `pointer-events: none` when closed
-- [ ] tests: unit coverage for this task's logic already lives in `highlight.test.ts` and `state.svelte.test.ts` (updateActiveCode); interactive behavior (typing -> highlight/gutter/render, scroll sync, panel slide) is asserted by `e2e/smoke.spec.ts` scenarios "editor typing" and "editor toggle" (Task 11)
-- [ ] Validation Commands green before next task
+- [x] layout consists of: header (EDITOR label + close button), gutter + highlight `<pre>{@html}` + transparent textarea (spellcheck/autocap off, wrap off), status bar (dot + text)
+- [x] textarea wiring per Technical Details / Editor mechanics: `value={activeChart().code}` + `oninput` -> `updateActiveCode` (no bind:value)
+- [x] gutter line numbers as `$derived` from code; `onscroll` sync textarea -> pre + gutter; identical font metrics via shared tokens
+- [x] slide animation: `translate` + opacity via `data-open`, duration/easing tokens, `pointer-events: none` when closed
+- [x] tests: unit coverage for this task's logic already lives in `highlight.test.ts` and `state.svelte.test.ts` (updateActiveCode); interactive behavior (typing -> highlight/gutter/render, scroll sync, panel slide) is asserted by `e2e/smoke.spec.ts` scenarios "editor typing" and "editor toggle" (Task 11)
+- [x] Validation Commands green before next task
 
 ### Task 9: Sidebar.svelte + Topbar.svelte
 
