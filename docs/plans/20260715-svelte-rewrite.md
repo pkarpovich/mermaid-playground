@@ -264,11 +264,11 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 - Create: `src/lib/state.svelte.ts`, `src/lib/state.svelte.test.ts`
 - Modify: `vite.config.ts` (vitest environment for localStorage if needed)
 
-- [ ] define `Chart`, the `app` `$state` singleton (charts, activeId, theme, editorOpen, sidebarOpen, error), `activeChart()` lookup
-- [ ] implement `loadState()` (localStorage `mpl-1a`, corrupt/empty -> seed with `theme: 'light'`) and `persistState()` (charts/activeId/theme only); SAMPLE/NEW_SAMPLE constants; `dateLabel(ts)`
-- [ ] implement actions: `selectChart`, `addChart`, `deleteChart` (last -> reseed, active -> first), `renameActive(name)`, `updateActiveCode(code)` (both set the field AND bump `updated = Date.now()`), `applyShared({name, code})` with exact-code dedupe -> select existing
-- [ ] tests: seed on empty and on corrupt JSON (theme 'light'); add/select behavior; renameActive and updateActiveCode set field + bump `updated`; delete-active and delete-last semantics; applyShared dedupe and prepend; dateLabel all four branches; persist writes expected schema
-- [ ] Validation Commands green before next task
+- [x] define `Chart`, the `app` `$state` singleton (charts, activeId, theme, editorOpen, sidebarOpen, error), `activeChart()` lookup
+- [x] implement `loadState()` (localStorage `mpl-1a`, corrupt/empty -> seed with `theme: 'light'`) and `persistState()` (charts/activeId/theme only); SAMPLE/NEW_SAMPLE constants; `dateLabel(ts)`
+- [x] implement actions: `selectChart`, `addChart`, `deleteChart` (last -> reseed, active -> first), `renameActive(name)`, `updateActiveCode(code)` (both set the field AND bump `updated = Date.now()`), `applyShared({name, code})` with exact-code dedupe -> select existing
+- [x] tests: seed on empty and on corrupt JSON (theme 'light'); add/select behavior; renameActive and updateActiveCode set field + bump `updated`; delete-active and delete-last semantics; applyShared dedupe and prepend; dateLabel all four branches; persist writes expected schema
+- [x] Validation Commands green before next task
 
 ### Task 6: mermaid.ts
 
