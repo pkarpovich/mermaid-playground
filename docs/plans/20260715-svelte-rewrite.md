@@ -275,10 +275,10 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 **Files:**
 - Create: `src/lib/mermaid.ts`, `src/lib/mermaid.test.ts`
 
-- [ ] implement memoized dynamic import, per-render `initialize` with the exact options from Technical Details, `parse`-then-`render` flow returning `{ svg } | { error }`, exported `cleanErr`
-- [ ] no chunk assertion in this task: `src/lib/mermaid.ts` is not imported by anything until Task 7, so no mermaid chunk exists yet; the chunk gate runs in Task 10 and Task 13 once the import is wired
-- [ ] tests: `cleanErr` (strips `error:` prefix, 3-line collapse, 260-char cap); options object matches spec (snapshot of the init config)
-- [ ] Validation Commands green before next task
+- [x] implement memoized dynamic import, per-render `initialize` with the exact options from Technical Details, `parse`-then-`render` flow returning `{ svg } | { error }`, exported `cleanErr`
+- [x] no chunk assertion in this task: `src/lib/mermaid.ts` is not imported by anything until Task 7, so no mermaid chunk exists yet; the chunk gate runs in Task 10 and Task 13 once the import is wired
+- [x] tests: `cleanErr` (strips `error:` prefix, 3-line collapse, 260-char cap); options object matches spec (snapshot of the init config)
+- [x] Validation Commands green before next task
 
 ### Task 7: viewport.ts + Canvas.svelte
 
