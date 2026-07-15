@@ -221,11 +221,11 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 - Create: `package.json`, `pnpm-lock.yaml`, `vite.config.ts`, `tsconfig.json`, `svelte.config.js`, `index.html`, `src/main.ts`, `src/App.svelte`, `src/app.css` (stub), `src/vite-env.d.ts`, `.gitignore`
 - Move: `index.html`, `styles.css`, `app.js` -> `design-preview/` (the three reference each other relatively; moved together the preview stays openable standalone)
 
-- [ ] `git init`; move the three vanilla files into `design-preview/`; commit as baseline
-- [ ] scaffold Vite + Svelte + TS via `pnpm create vite` (svelte-ts template); versions must land in the ranges pinned in Context (verify in package.json/pnpm-lock.yaml; no web research); set `packageManager` field (pnpm 11)
-- [ ] add Vitest; wire `test`, `check`, `dev`, `build`, `preview` scripts; configure vitest to compile `.svelte.ts` rune modules via the svelte vite plugin
-- [ ] `index.html`: title `Mermaid Playground`, Google Fonts preconnect + IBM Plex Sans (400/500/600/700) and IBM Plex Mono (400/500/600)
-- [ ] add a trivial placeholder test; `pnpm test`, `pnpm check`, `pnpm build` all green
+- [x] `git init`; move the three vanilla files into `design-preview/`; commit as baseline
+- [x] scaffold Vite + Svelte + TS via `pnpm create vite` (svelte-ts template); versions must land in the ranges pinned in Context (verify in package.json/pnpm-lock.yaml; no web research); set `packageManager` field (pnpm 11)
+- [x] add Vitest; wire `test`, `check`, `dev`, `build`, `preview` scripts; configure vitest to compile `.svelte.ts` rune modules via the svelte vite plugin
+- [x] `index.html`: title `Mermaid Playground`, Google Fonts preconnect + IBM Plex Sans (400/500/600/700) and IBM Plex Mono (400/500/600)
+- [x] add a trivial placeholder test; `pnpm test`, `pnpm check`, `pnpm build` all green
 
 ### Task 2: Design tokens in app.css (oklch, light-dark)
 
