@@ -254,9 +254,9 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 **Files:**
 - Create: `src/lib/share.ts`, `src/lib/share.test.ts`
 
-- [ ] implement `encodeShare` / `decodeShare` per Technical Details (CompressionStream/DecompressionStream `deflate-raw`, base64url without padding, `#code:` prefix, null-not-throw decode)
-- [ ] tests: roundtrip ASCII + Cyrillic + emoji code and names; wrong prefix -> null; corrupt base64 -> null; truncated payload -> null; empty string -> null; a ~4KB input built from repeated realistic mermaid-like lines with varied identifiers (NOT random bytes - the bound assumes diagram-source redundancy) encodes to a fragment under 2500 chars; if this assertion fails, fix the input, never weaken the threshold
-- [ ] Validation Commands green before next task
+- [x] implement `encodeShare` / `decodeShare` per Technical Details (CompressionStream/DecompressionStream `deflate-raw`, base64url without padding, `#code:` prefix, null-not-throw decode)
+- [x] tests: roundtrip ASCII + Cyrillic + emoji code and names; wrong prefix -> null; corrupt base64 -> null; truncated payload -> null; empty string -> null; a ~4KB input built from repeated realistic mermaid-like lines with varied identifiers (NOT random bytes - the bound assumes diagram-source redundancy) encodes to a fragment under 2500 chars; if this assertion fails, fix the input, never weaken the threshold
+- [x] Validation Commands green before next task
 
 ### Task 5: state.svelte.ts (store + actions)
 
