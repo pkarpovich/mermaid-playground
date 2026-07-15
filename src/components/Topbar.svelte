@@ -25,7 +25,11 @@
 
   async function share() {
     const fragment = await encodeShare({ name: chart.name, code: chart.code })
-    await navigator.clipboard.writeText(`${location.origin}/${fragment}`)
+    try {
+      await navigator.clipboard.writeText(`${location.origin}/${fragment}`)
+    } catch {
+      return
+    }
     copied = true
     if (copyTimer) clearTimeout(copyTimer)
     copyTimer = setTimeout(() => {

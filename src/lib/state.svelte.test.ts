@@ -92,6 +92,21 @@ describe('loadState', () => {
     expect(app.activeId).toBe('bbb22222')
     expect(app.theme).toBe('dark')
   })
+
+  it('falls back to the first chart when the persisted activeId matches none', () => {
+    const stored = {
+      charts: [
+        { id: 'aaa11111', name: 'Kept', code: 'flowchart TD\n  A --> B', updated: 123 },
+        { id: 'bbb22222', name: 'Second', code: 'graph LR\n  X --> Y', updated: 456 },
+      ],
+      activeId: 'ghost999',
+      theme: 'light',
+    }
+    localStorage.setItem('mpl-1a', JSON.stringify(stored))
+    loadState()
+    expect(app.activeId).toBe('aaa11111')
+    expect(activeChart().id).toBe('aaa11111')
+  })
 })
 
 describe('persistState', () => {

@@ -82,7 +82,8 @@ export function loadState(): void {
   }
   if (isPersisted(data)) {
     app.charts = data.charts
-    app.activeId = typeof data.activeId === 'string' ? data.activeId : data.charts[0].id
+    const hasActive = data.charts.some((c) => c.id === data.activeId)
+    app.activeId = hasActive ? (data.activeId as string) : data.charts[0].id
     app.theme = data.theme === 'dark' ? 'dark' : 'light'
     return
   }
