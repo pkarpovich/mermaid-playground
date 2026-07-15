@@ -309,12 +309,12 @@ End-state assertions (the transition itself is not asserted): collapsed -> sideb
 **Files:**
 - Create: `src/components/Sidebar.svelte`, `src/components/Topbar.svelte`
 
-- [ ] Sidebar: brand row (accent diamond logo, Mermaid / Playground, hide button), CHARTS header + add button, `{#each}` chart rows (active dot/weight/bg, date label, hover-revealed delete with stopPropagation)
-- [ ] sidebar collapse implements the observable contract in Technical Details / Sidebar collapse
-- [ ] Topbar: show-sidebar button (only when collapsed), name input (`value={activeChart().name}` + `oninput` -> `renameActive`; transparent border, hover -> border token, focus-visible -> border-strong token with outline none - styling detail, not an acceptance criterion), Editor toggle (pressed = accent), date label, theme toggle, Share button
-- [ ] Share flow: click -> `encodeShare(active)` -> clipboard -> label `Copied`, reverting after 2000ms (state-driven, timer cleaned up)
-- [ ] tests: action-level coverage lives in `state.svelte.test.ts`; interactive behavior (add/select/rename/delete, collapse, share copy) is asserted by `e2e/smoke.spec.ts` and `e2e/share.spec.ts` (Task 11)
-- [ ] Validation Commands green before next task
+- [x] Sidebar: brand row (accent diamond logo, Mermaid / Playground, hide button), CHARTS header + add button, `{#each}` chart rows (active dot/weight/bg, date label, hover-revealed delete with stopPropagation)
+- [x] sidebar collapse implements the observable contract in Technical Details / Sidebar collapse
+- [x] Topbar: show-sidebar button (only when collapsed), name input (`value={activeChart().name}` + `oninput` -> `renameActive`; transparent border, hover -> border token, focus-visible -> border-strong token with outline none - styling detail, not an acceptance criterion), Editor toggle (pressed = accent), date label, theme toggle, Share button
+- [x] Share flow: click -> `encodeShare(active)` -> clipboard -> label `Copied`, reverting after 2000ms (state-driven, timer cleaned up)
+- [x] tests: action-level coverage lives in `state.svelte.test.ts`; interactive behavior (add/select/rename/delete, collapse, share copy) is asserted by `e2e/smoke.spec.ts` and `e2e/share.spec.ts` (Task 11)
+- [x] Validation Commands green before next task
 
 ### Task 10: App.svelte wiring + startup
 
