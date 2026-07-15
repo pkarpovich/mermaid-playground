@@ -32,7 +32,12 @@ export function cleanErr(error: unknown): string {
 let loader: Promise<Mermaid> | null = null
 
 function loadMermaid(): Promise<Mermaid> {
-  if (!loader) loader = import('mermaid').then((module) => module.default)
+  if (!loader) {
+    loader = import('mermaid').then((module) => module.default)
+    loader.catch(() => {
+      loader = null
+    })
+  }
   return loader
 }
 
@@ -41,8 +46,13 @@ function renderId(): string {
 }
 
 export async function renderDiagram(code: string, theme: Theme): Promise<RenderResult> {
-  const mermaid = await loadMermaid()
-  mermaid.initialize(mermaidConfig(theme))
+  let mermaid: Mermaid
+  try {
+    mermaid = await loadMermaid()
+    mermaid.initialize(mermaidConfig(theme))
+  } catch (error) {
+    return { error: cleanErr(error) }
+  }
   try {
     await mermaid.parse(code)
   } catch (error) {

@@ -65,6 +65,11 @@ describe('encodeShare / decodeShare', () => {
     expect(await decodeShare('#code:aGVsbG8')).toBeNull()
   })
 
+  it('returns null when the decompressed payload exceeds the size cap', async () => {
+    const fragment = await encodeShare({ name: 'bomb', code: 'A'.repeat(2_000_000) })
+    expect(await decodeShare(fragment)).toBeNull()
+  })
+
   it('encodes a ~4KB realistic diagram to a fragment under 2500 chars', async () => {
     const code = buildLargeDiagram()
     expect(code.length).toBeGreaterThan(3800)
