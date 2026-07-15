@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mermaid Playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script async src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar" id="sidebar" data-open="true">
+    <div class="sidebar-inner">
+      <div class="brand">
+        <span class="logo"></span>
+        <span class="brand-name">Mermaid</span>
+        <span class="brand-sub">Playground</span>
+        <button class="icon-btn" id="sidebar-hide" title="Hide sidebar">«</button>
+      </div>
+      <div class="charts-head">
+        <span class="charts-label">Charts</span>
+        <button class="icon-btn add" id="add-chart" title="New chart">+</button>
+      </div>
+      <div class="chart-list" id="chart-list"></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="btn square" id="sidebar-show" title="Show sidebar" hidden>»</button>
+        <input class="name-input" id="chart-name" spellcheck="false" aria-label="Chart name">
+        <button class="btn editor-toggle" id="editor-toggle" title="Toggle editor" aria-pressed="true">
+          <span class="editor-glyph"></span>
+          Editor
+        </button>
+      </div>
+      <div class="topbar-right">
+        <span class="date-label" id="active-date"></span>
+        <button class="btn" id="theme-toggle" title="Toggle theme">Light</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <div class="viewer" id="viewer">
+        <div class="stage" id="stage"></div>
+      </div>
+
+      <div class="error-wrap">
+        <div class="error-card" id="error-card" hidden>
+          <span class="error-dot"></span>
+          <div class="error-body">
+            <div class="error-title">Syntax error</div>
+            <div class="error-msg" id="error-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="zoombar">
+        <button class="icon-btn" id="zoom-out" title="Zoom out">−</button>
+        <button class="icon-btn zoom-pct" id="zoom-reset" title="Reset to 100%">100%</button>
+        <button class="icon-btn" id="zoom-in" title="Zoom in">+</button>
+        <div class="zoombar-sep"></div>
+        <button class="icon-btn zoom-fit" id="zoom-fit" title="Fit to screen">Fit</button>
+      </div>
+
+      <div class="editor-panel" id="editor-panel" data-open="true">
+        <div class="editor-head">
+          <span class="editor-label">Editor</span>
+          <button class="icon-btn" id="editor-hide" title="Hide editor">×</button>
+        </div>
+        <div class="editor-body">
+          <div class="gutter" id="gutter"></div>
+          <div class="code-wrap">
+            <pre class="hl" id="highlight" aria-hidden="true"></pre>
+            <textarea class="code" id="code" spellcheck="false" autocapitalize="off" autocorrect="off" wrap="off" aria-label="Mermaid source"></textarea>
+          </div>
+        </div>
+        <div class="editor-status">
+          <span class="status-dot" id="status-dot"></span>
+          <span class="status-text" id="status-text"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
