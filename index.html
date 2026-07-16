@@ -3,8 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mermaid Playground</title>
+  <title>Mermaid Playground - Online Mermaid Diagram Editor</title>
+  <meta
+    name="description"
+    content="Free online Mermaid diagram editor with live preview - no sign-up required. Create flowcharts, sequence diagrams, ER diagrams and more with syntax highlighting, a pan and zoom canvas, dark mode, and shareable links."
+  />
+  <link rel="canonical" href="https://mermaid-playground.pkarpovich.dev/" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f6f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111116" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mermaid Playground" />
+  <meta property="og:title" content="Mermaid Playground - Online Mermaid Diagram Editor" />
+  <meta
+    property="og:description"
+    content="Free online Mermaid diagram editor with live preview - no sign-up. Flowcharts, sequence diagrams, ER diagrams and more, with shareable links."
+  />
+  <meta property="og:url" content="https://mermaid-playground.pkarpovich.dev/" />
+  <meta property="og:image" content="https://mermaid-playground.pkarpovich.dev/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta
+    property="og:image:alt"
+    content="Mermaid Playground editor with a rendered flowchart on a pan and zoom canvas"
+  />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mermaid Playground - Online Mermaid Diagram Editor" />
+  <meta
+    name="twitter:description"
+    content="Free online Mermaid diagram editor with live preview - no sign-up. Flowcharts, sequence diagrams, ER diagrams and more, with shareable links."
+  />
+  <meta name="twitter:image" content="https://mermaid-playground.pkarpovich.dev/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Mermaid Playground",
+      "url": "https://mermaid-playground.pkarpovich.dev/",
+      "description": "Free online Mermaid diagram editor with live preview - no sign-up required. Flowcharts, sequence diagrams, ER diagrams and more, with syntax highlighting, a pan and zoom canvas, dark mode, and shareable links.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -13,6 +54,14 @@
   />
 </head>
 <body>
+  <noscript>
+    <p>
+      Mermaid Playground is a free online editor for Mermaid diagrams - no sign-up required. Write
+      diagram code with syntax highlighting and instantly see the rendered flowchart, sequence
+      diagram, ER diagram, class diagram, or state diagram on a pan and zoom canvas. Diagrams are
+      saved in your browser and can be shared with a link. Enable JavaScript to use the editor.
+    </p>
+  </noscript>
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
 </body>
