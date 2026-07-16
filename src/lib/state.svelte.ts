@@ -13,6 +13,7 @@ interface AppState {
   theme: Theme
   editorOpen: boolean
   sidebarOpen: boolean
+  editorFullscreen: boolean
   error: string | null
 }
 
@@ -48,6 +49,7 @@ export const app: AppState = $state({
   theme: 'light',
   editorOpen: true,
   sidebarOpen: true,
+  editorFullscreen: false,
   error: null,
 })
 
@@ -66,7 +68,15 @@ function isChart(value: unknown): value is Chart {
   )
 }
 
-function isPersisted(value: unknown): value is { charts: Chart[]; activeId: unknown; theme: unknown } {
+interface PersistedState {
+  charts: Chart[]
+  activeId: unknown
+  theme: unknown
+  editorOpen: unknown
+  sidebarOpen: unknown
+}
+
+function isPersisted(value: unknown): value is PersistedState {
   if (typeof value !== 'object' || value === null) return false
   const v = value as Record<string, unknown>
   return Array.isArray(v.charts) && v.charts.length > 0 && v.charts.every(isChart)
@@ -85,19 +95,29 @@ export function loadState(): void {
     const hasActive = data.charts.some((c) => c.id === data.activeId)
     app.activeId = hasActive ? (data.activeId as string) : data.charts[0].id
     app.theme = data.theme === 'dark' ? 'dark' : 'light'
+    app.editorOpen = data.editorOpen !== false
+    app.sidebarOpen = data.sidebarOpen !== false
     return
   }
   const fresh = makeSeed()
   app.charts = [fresh]
   app.activeId = fresh.id
   app.theme = 'light'
+  app.editorOpen = true
+  app.sidebarOpen = true
 }
 
 export function persistState(): void {
   try {
     localStorage.setItem(
       STORE_KEY,
-      JSON.stringify({ charts: app.charts, activeId: app.activeId, theme: app.theme }),
+      JSON.stringify({
+        charts: app.charts,
+        activeId: app.activeId,
+        theme: app.theme,
+        editorOpen: app.editorOpen,
+        sidebarOpen: app.sidebarOpen,
+      }),
     )
   } catch {
     return
