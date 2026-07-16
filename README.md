@@ -2,7 +2,7 @@
 
 A fast, client-side [Mermaid](https://mermaid.js.org) diagram editor with live preview and zero-backend link sharing. Built with Svelte 5 (runes), Vite, and TypeScript. Deployed as static assets on Cloudflare Workers.
 
-**Live: https://mermaid-playground.rgnsfyd7dm.workers.dev**
+**Live: https://mermaid-playground.pkarpovich.dev**
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/screenshot-dark.png">

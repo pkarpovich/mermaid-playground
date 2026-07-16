@@ -3,5 +3,8 @@
   "compatibility_date": "2026-07-15",
   "assets": {
     "directory": "./dist"
-  }
+  },
+  "routes": [
+    { "pattern": "mermaid-playground.pkarpovich.dev", "custom_domain": true }
+  ]
 }
