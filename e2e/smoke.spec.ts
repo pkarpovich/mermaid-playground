@@ -183,6 +183,36 @@ test('editor and sidebar visibility survive a reload', async ({ page }) => {
   await expect(page.getByTitle('Show sidebar')).toBeVisible()
 })
 
+test('active chart is reflected in the url hash and back navigates charts', async ({ page }) => {
+  await page.goto('/')
+  await waitForDiagram(page)
+
+  await expect.poll(() => page.evaluate(() => location.hash)).toMatch(/^#\/c\/[a-z0-9]+$/)
+  const firstHash = await page.evaluate(() => location.hash)
+
+  await page.getByTitle('New chart').click()
+  await expect(page.locator('.name-input')).toHaveValue('Untitled 2')
+  await expect.poll(() => page.evaluate(() => location.hash)).not.toBe(firstHash)
+
+  await page.goBack()
+  await expect(page.locator('.name-input')).toHaveValue('App login flow')
+  await expect.poll(() => page.evaluate(() => location.hash)).toBe(firstHash)
+
+  await page.goForward()
+  await expect(page.locator('.name-input')).toHaveValue('Untitled 2')
+})
+
+test('unknown chart id in the url falls back to the active chart silently', async ({ page }) => {
+  await page.goto('/#/c/nonexist1')
+  await waitForDiagram(page)
+
+  await expect(page.locator('.name-input')).toHaveValue('App login flow')
+  await expect(page.locator('.error-card')).toBeHidden()
+  const hash = await page.evaluate(() => location.hash)
+  expect(hash).toMatch(/^#\/c\/[a-z0-9]+$/)
+  expect(hash).not.toBe('#/c/nonexist1')
+})
+
 test('sidebar collapse end-state contract', async ({ page }) => {
   await page.goto('/')
   await waitForDiagram(page)

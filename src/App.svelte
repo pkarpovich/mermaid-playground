@@ -1,5 +1,6 @@
 <script lang="ts">
   import { app, persistState } from './lib/state.svelte'
+  import { syncActiveHash } from './lib/route'
   import Sidebar from './components/Sidebar.svelte'
   import Topbar from './components/Topbar.svelte'
   import Canvas from './components/Canvas.svelte'
@@ -11,6 +12,10 @@
 
   $effect(() => {
     persistState()
+  })
+
+  $effect(() => {
+    syncActiveHash(app.activeId)
   })
 </script>
 

@@ -55,7 +55,7 @@ Compression uses the browser-native `CompressionStream` API, so there are no ext
 
 ## Architecture notes
 
-- Pure client-side SPA: no backend, no router, no SSR
+- Pure client-side SPA: no backend, no SSR; the active chart is mirrored into the URL hash (`#/c/<id>`) by a ~60-line module, no router library
 - State is a single Svelte 5 `$state` singleton; Mermaid SVG injection, pan/zoom transforms, and editor scroll-sync are deliberately imperative islands behind `bind:this` + `$effect`
 - Mermaid is dynamically imported into its own chunk, so the UI never waits for it; diagrams render with `securityLevel: 'strict'` because shared links can come from anyone
 - `design-preview/` holds the original vanilla HTML/CSS/JS design reference the app is built against; `src/lib/tokens.test.ts` (color parity in oklch) and `e2e/parity.spec.ts` (structural sizes, themes) guard the fidelity
