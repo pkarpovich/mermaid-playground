@@ -93,6 +93,34 @@ describe('loadState', () => {
     expect(app.theme).toBe('dark')
   })
 
+  it('restores closed editor and sidebar flags from storage', () => {
+    const stored = {
+      charts: [{ id: 'aaa11111', name: 'Kept', code: 'flowchart TD\n  A --> B', updated: 123 }],
+      activeId: 'aaa11111',
+      theme: 'light',
+      editorOpen: false,
+      sidebarOpen: false,
+    }
+    localStorage.setItem('mpl-1a', JSON.stringify(stored))
+    loadState()
+    expect(app.editorOpen).toBe(false)
+    expect(app.sidebarOpen).toBe(false)
+  })
+
+  it('defaults editor and sidebar flags to true for legacy payloads without them', () => {
+    const stored = {
+      charts: [{ id: 'aaa11111', name: 'Kept', code: 'flowchart TD\n  A --> B', updated: 123 }],
+      activeId: 'aaa11111',
+      theme: 'light',
+    }
+    localStorage.setItem('mpl-1a', JSON.stringify(stored))
+    app.editorOpen = false
+    app.sidebarOpen = false
+    loadState()
+    expect(app.editorOpen).toBe(true)
+    expect(app.sidebarOpen).toBe(true)
+  })
+
   it('falls back to the first chart when the persisted activeId matches none', () => {
     const stored = {
       charts: [
@@ -110,17 +138,27 @@ describe('loadState', () => {
 })
 
 describe('persistState', () => {
-  it('writes only charts, activeId and theme', () => {
+  it('writes charts, activeId, theme, editorOpen and sidebarOpen', () => {
     app.theme = 'dark'
+    app.editorOpen = false
+    app.sidebarOpen = false
     persistState()
     const raw = localStorage.getItem('mpl-1a')
     expect(raw).not.toBeNull()
     const parsed = JSON.parse(raw as string)
-    expect(Object.keys(parsed).sort()).toEqual(['activeId', 'charts', 'theme'])
+    expect(Object.keys(parsed).sort()).toEqual([
+      'activeId',
+      'charts',
+      'editorOpen',
+      'sidebarOpen',
+      'theme',
+    ])
     expect(parsed.charts).toHaveLength(1)
     expect(parsed.charts[0]).toMatchObject({ name: 'App login flow', code: SAMPLE })
     expect(parsed.activeId).toBe(app.activeId)
     expect(parsed.theme).toBe('dark')
+    expect(parsed.editorOpen).toBe(false)
+    expect(parsed.sidebarOpen).toBe(false)
   })
 
   it('roundtrips through loadState', () => {

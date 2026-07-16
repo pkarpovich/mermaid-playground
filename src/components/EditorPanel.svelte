@@ -23,13 +23,29 @@
 
   function close() {
     app.editorOpen = false
+    app.editorFullscreen = false
+  }
+
+  function toggleFullscreen() {
+    app.editorFullscreen = !app.editorFullscreen
   }
 </script>
 
-<div class="editor-panel" data-open={app.editorOpen ? 'true' : 'false'}>
+<div
+  class="editor-panel"
+  data-open={app.editorOpen ? 'true' : 'false'}
+  data-fullscreen={app.editorFullscreen ? 'true' : 'false'}
+>
   <div class="editor-head">
     <span class="editor-label">Editor</span>
-    <button class="icon-btn" onclick={close} title="Hide editor">×</button>
+    <div class="editor-actions">
+      <button
+        class="icon-btn expand"
+        onclick={toggleFullscreen}
+        title={app.editorFullscreen ? 'Exit full screen' : 'Expand editor'}
+      >{app.editorFullscreen ? '⤡' : '⤢'}</button>
+      <button class="icon-btn" onclick={close} title="Hide editor">×</button>
+    </div>
   </div>
   <div class="editor-body">
     <div class="gutter" bind:this={gutter}>{lineNumbers}</div>
@@ -71,6 +87,7 @@
     box-shadow: var(--shadow);
     transition:
       translate var(--dur-panel) var(--ease-panel),
+      inline-size var(--dur-panel) var(--ease-panel),
       opacity var(--dur-panel) ease;
 
     &[data-open='false'] {
@@ -78,6 +95,16 @@
       pointer-events: none;
       translate: -103% 0;
     }
+
+    &[data-fullscreen='true'] {
+      inline-size: 100%;
+    }
+  }
+
+  .editor-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
   }
 
   .editor-head {
@@ -113,6 +140,10 @@
 
     &:hover {
       background: var(--hover);
+    }
+
+    &.expand {
+      font-size: var(--fs-list);
     }
   }
 

@@ -146,6 +146,43 @@ test('editor toggle slides the panel closed', async ({ page }) => {
   await expect(panel).toHaveAttribute('data-open', 'true')
 })
 
+test('editor fullscreen toggle expands the panel to the full workspace width', async ({ page }) => {
+  await page.goto('/')
+  await waitForDiagram(page)
+
+  const panel = page.locator('.editor-panel')
+  const initialWidth = (await panel.boundingBox())?.width ?? 0
+  expect(initialWidth).toBeLessThan(500)
+
+  await page.getByTitle('Expand editor').click()
+  const workspaceWidth = await page
+    .locator('.workspace')
+    .evaluate((el) => el.getBoundingClientRect().width)
+  await expect
+    .poll(async () => (await panel.boundingBox())?.width ?? 0)
+    .toBeGreaterThan(workspaceWidth - 2)
+
+  await page.getByTitle('Exit full screen').click()
+  await expect
+    .poll(async () => (await panel.boundingBox())?.width ?? 0)
+    .toBeLessThan(500)
+})
+
+test('editor and sidebar visibility survive a reload', async ({ page }) => {
+  await page.goto('/')
+  await waitForDiagram(page)
+
+  await page.getByTitle('Toggle editor').click()
+  await expect(page.locator('.editor-panel')).toHaveAttribute('data-open', 'false')
+  await page.getByTitle('Hide sidebar').click()
+  await expect(page.getByTitle('Show sidebar')).toBeVisible()
+
+  await page.reload()
+  await waitForDiagram(page)
+  await expect(page.locator('.editor-panel')).toHaveAttribute('data-open', 'false')
+  await expect(page.getByTitle('Show sidebar')).toBeVisible()
+})
+
 test('sidebar collapse end-state contract', async ({ page }) => {
   await page.goto('/')
   await waitForDiagram(page)

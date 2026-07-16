@@ -66,6 +66,7 @@
 
   function onPointerDown(e: PointerEvent) {
     if (e.button !== 0) return
+    e.preventDefault()
     pan = { x: e.clientX, y: e.clientY, tx: view.tx, ty: view.ty }
     viewer.setPointerCapture(e.pointerId)
     panning = true
@@ -189,6 +190,7 @@
     overflow: hidden;
     cursor: grab;
     touch-action: none;
+    user-select: none;
     background-color: var(--bg);
     background-image: radial-gradient(var(--grid-dot) 1.1px, transparent 1.1px);
     background-size: 22px 22px;
