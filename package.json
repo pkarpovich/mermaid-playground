@@ -25,7 +25,7 @@
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",
     "vite": "^8.1.4",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "wrangler": "^4.110.0"
   },
   "dependencies": {
